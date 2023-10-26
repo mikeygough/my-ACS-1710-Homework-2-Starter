@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Calculator Results</title>
-    </head>
-    <body>
-        <!-- Your HTML code goes here! -->
+{% extends 'base.html' %}
 
+{% block title %}
 
+  Calculator Results
+  
+{% endblock %}
 
+{% block content %}
 
+  <p>You chose to {{operation}} {{operand1}} and {{operand2}}. Your result is: {{result}}</p>
 
-        
-    </body>
-</html>
+{% endblock %}

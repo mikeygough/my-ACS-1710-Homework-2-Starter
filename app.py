@@ -79,20 +79,7 @@ def message_results():
 @app.route('/calculator')
 def calculator():
     """Shows the user a form to enter 2 numbers and an operation."""
-    return """
-    <form action="/calculator_results" method="GET">
-        Please enter 2 numbers and select an operator.<br/><br/>
-        <input type="number" name="operand1">
-        <select name="operation">
-            <option value="add">+</option>
-            <option value="subtract">-</option>
-            <option value="multiply">*</option>
-            <option value="divide">/</option>
-        </select>
-        <input type="number" name="operand2">
-        <input type="submit" value="Submit!">
-    </form>
-    """
+    return render_template('calculator_form.html')
 
 @app.route('/calculator_results')
 def calculator_results():
@@ -101,6 +88,7 @@ def calculator_results():
     operand1 = int(request.args.get('operand1'))
     operand2 = int(request.args.get('operand2'))
     operation = request.args.get('operation')
+    
     # do math
     if operation == 'add':
         result = operand1 + operand2
@@ -110,8 +98,15 @@ def calculator_results():
         result = operand1 * operand2
     if operation == 'divide':
         result = operand1 / operand2
+        
+    context = {
+        'operand1': operand1,
+        'operand2': operand2,
+        'operation': operation,
+        'result': result
+    }
 
-    return f"You chose to {operation} {operand1} and {operand2}. Your result is: {result}"
+    return render_template('calculator_results.html', **context)
 
 HOROSCOPE_PERSONALITIES = {
     'aries': 'Adventurous and energetic',
