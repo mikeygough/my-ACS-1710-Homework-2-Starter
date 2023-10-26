@@ -64,12 +64,20 @@ def favorites_results():
 def secret_message():
     """Shows the user a form to collect a secret message. Sends the result via
     the POST method to keep it a secret!"""
-    pass
+    return """
+    <form action="/message_results" method="POST">
+        What's your secret message? <br/>
+        <label for="message">Message</label>
+        <input id="message" type="text" name="message"> <br/>
+        <input type="submit" value="Submit!">
+    </form>
+    """
 
 @app.route('/message_results', methods=['POST'])
 def message_results():
     """Shows the user their message, with the letters in sorted order."""
-    pass
+    message = request.form['message']
+    return f"{sort_letters(message)}"
 
 @app.route('/calculator')
 def calculator():
@@ -92,8 +100,21 @@ def calculator():
 @app.route('/calculator_results')
 def calculator_results():
     """Shows the user the result of their calculation."""
-    pass
+    # get values
+    operand1 = int(request.args.get('operand1'))
+    operand2 = int(request.args.get('operand2'))
+    operation = request.args.get('operation')
+    # do math
+    if operation == 'add':
+        result = operand1 + operand2
+    if operation == 'subtract':
+        result = operand1 - operand2
+    if operation == 'multiply':
+        result = operand1 * operand2
+    if operation == 'divide':
+        result = operand1 / operand2
 
+    return f"You chose to {operation} {operand1} and {operand2}. Your result is: {result}"
 
 HOROSCOPE_PERSONALITIES = {
     'aries': 'Adventurous and energetic',
