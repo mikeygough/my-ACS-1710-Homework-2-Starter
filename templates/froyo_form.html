@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Froyo Ordering</title>
-    </head>
-    <body>
-        <!-- Your HTML code goes here! -->
+{% extends 'base.html' %}
 
+{% block title %}
 
+  Froyo Ordering
+  
+{% endblock %}
 
+{% block content %}
 
+  <form action="/froyo_results" method="GET">
+        What is your favorite Fro-Yo flavor? <br/>
+        <label for="flavor">Flavor</label>
+        <input id="flavor" type="text" name="flavor"> </br>
+        <label for="toppings">Toppings</label>
+        <input id="toppings" type="text" name="toppings"> </br>
+        <input type="submit" value="Submit!">
+    </form>
 
-        
-    </body>
-</html>
+{% endblock %}
