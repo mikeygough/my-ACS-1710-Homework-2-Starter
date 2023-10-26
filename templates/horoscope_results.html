@@ -1,14 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Horoscope Results</title>
-    </head>
-    <body>
-        <!-- Your HTML code goes here! -->
+{% extends 'base.html' %}
 
-        
+{% block title %}
 
-        
-        
-    </body>
-</html>
+  Horoscope Results
+  
+{% endblock %}
+
+{% block content %}
+
+  <p>Greetings, <strong>{{ users_name }}</strong>.</p>
+  
+  <p>My my, that's a lovely name for an <strong>{{ horoscope_sign }}</strong>.</p>
+
+  <p>{{ users_name }}... it truly captures your <em>{{ personality }}</em> spirit.</p>
+
+  <p>The future may be cloudy but I sense a strong sun coming through.
+  Stay true to your lucky number <strong>{{ lucky_number }}</strong> and you'll be generously rewarded. </p>
+
+  <p>May the old gods and the new be by your side</p>
+
+{% endblock %}

@@ -38,11 +38,11 @@ def favorites():
     return """
     <form action="/favorites_results" method="GET">
         What are your favorite things? </br>
-        <label for="color">Color</label>
+        <label for="color">Favorite Color</label>
         <input id="color" type="text" name="color"> <br/>
-        <label for="animal">Animal</label>
+        <label for="animal">Favorite Animal</label>
         <input id="animal" type="text" name="animal"> <br/>
-        <label for="city">City</label>
+        <label for="city">Favorite City</label>
         <input id="city" type="text" name="city"> <br/>
         <input type="submit" value="Submit!">
     </form>
@@ -133,19 +133,23 @@ def horoscope_results():
     """Shows the user the result for their chosen horoscope."""
 
     # TODO: Get the sign the user entered in the form, based on their birthday
-    horoscope_sign = ''
+    horoscope_sign = request.args.get('horoscope_sign')
 
     # TODO: Look up the user's personality in the HOROSCOPE_PERSONALITIES
     # dictionary based on what the user entered
-    users_personality = ''
+    users_personality = HOROSCOPE_PERSONALITIES[horoscope_sign]
 
     # TODO: Generate a random number from 1 to 99
-    lucky_number = 0
+    lucky_number = random.randint(1, 99)
+    
+    # get user's name
+    users_name = request.args.get('users_name')
 
     context = {
         'horoscope_sign': horoscope_sign,
         'personality': users_personality, 
-        'lucky_number': lucky_number
+        'lucky_number': lucky_number,
+        'users_name': users_name.capitalize()
     }
 
     return render_template('horoscope_results.html', **context)
