@@ -154,6 +154,18 @@ def horoscope_results():
 
     return render_template('horoscope_results.html', **context)
 
+# quiz testing
+@app.route('/tasks')
+def task_tracker():
+    """Show the user what they have to do."""
+    users_tasks = [    # Could contain any number of string values
+        'Call mom',
+        'Walk dog',
+        'Pay bills',
+        'Buy groceries',
+    ]
+    return render_template('task_list.html', tasks=users_tasks)
+
 if __name__ == '__main__':
     app.config['ENV'] = 'development'
     app.run(debug=True)

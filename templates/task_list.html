@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+  Task List
+  
+{% endblock %}
+
+{% block content %}
+
+  {% if tasks %}
+    <ul>
+    {% for task in tasks %}
+      <li>{{ task }}</li>
+    {% endfor %}
+  {% else %}
+    <p>No tasks for now!</p>
+  {% endif %}
+
+{% endblock %}
